@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 public class location extends AppCompatActivity {
 
-    private Button button;
+    //private Button button;
     private TextView latTextView;
     private TextView lonTextView;
     private TextView dTextView;
@@ -32,7 +32,7 @@ public class location extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        button = findViewById(R.id.button3);
+        //button = findViewById(R.id.button3);
 
         latTextView = findViewById(R.id.lat);
         lonTextView = findViewById(R.id.lon);
@@ -80,6 +80,16 @@ public class location extends AppCompatActivity {
 
 
     }
+
+    /*private void configureButton() {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
+            }
+        });
+
+    }*/
 
 
 }
