@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 public class location extends AppCompatActivity {
 
     //private Button button;
@@ -24,6 +23,7 @@ public class location extends AppCompatActivity {
     private TextView dTextView;
     private LocationManager locationManager;
     private LocationListener locationListener;
+    private Coordinate port,phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,8 @@ public class location extends AppCompatActivity {
         setContentView(R.layout.location);
 
         Intent intent = getIntent();
-
+        port = new Coordinate("Chennai",13.0815,80.2921);
+        phone = new Coordinate();
         //button = findViewById(R.id.button3);
 
         latTextView = findViewById(R.id.lat);
@@ -44,9 +45,9 @@ public class location extends AppCompatActivity {
             public void onLocationChanged(Location location) {
                 latTextView.setText("Lat: "+location.getLatitude());
                 lonTextView.setText("Lon: "+ location.getLongitude());
-                double x1 = location.getLatitude();
-                double x2 = location.getLongitude();
-                double a = Math.pow(Math.sin((x1*3.14/180-13.0815*3.14/180)/2),2) + Math.cos(x1*3.14/180)*Math.cos(13.0815*3.14/180)*Math.pow(Math.sin((x2*3.14/180-80.2921*3.14/180)/2),2);
+                phone.setLatitude(location.getLatitude());
+                phone.setLongitude(location.getLongitude());
+                double a = Math.pow(Math.sin((phone.getLatitude()-port.getLatitude())/2),2) + Math.cos(phone.getLatitude())*Math.cos(port.getLatitude())*Math.pow(Math.sin((phone.getLongitude()-port.getLongitude())/2),2);
                 double c = Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
                 double d = c*6371000;
                 dTextView.setText("Distance: "+d);
