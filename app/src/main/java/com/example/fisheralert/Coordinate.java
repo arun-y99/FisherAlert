@@ -1,20 +1,30 @@
 package com.example.fisheralert;
 
 public class Coordinate {
+    /*
+    * This class is to represent the location of any object be it the phone or any port.
+    *
+    * Data members:
+    *   1.  latitude : the latitude, expressed as a double value
+    *                   positive value indicates N, negative indicates S
+    *   2.  longitude : the longitude, expressed as a double value
+     *                   positive value indicates E, negative indicates W
+     *  3.  name    :   the thing represented, i.e. phone,port,etc.
+    * */
 
-    private double latitude;
-    private double longitude;
-    private String port;
+    private double latitude; //LATITUDE
+    private double longitude; //LONGITUDE
+    private String name; //NAME OF THE PORT
 
     Coordinate() {
         latitude=longitude=0.0;
-        port="XXX";
+        name="XXX";
     }
 
     Coordinate(String p,double a, double b) {
-        latitude=a*3.14/180;
+        latitude=a*3.14/180; //Converting into radians
         longitude=b*3.14/180;
-        port=p;
+        name=p;
     }
 
     void setLatitude(double a) {
@@ -25,8 +35,8 @@ public class Coordinate {
         longitude=a*3.14/180;
     }
 
-    void setPort(String a) {
-        port=a;
+    void setName(String a) {
+        name=a;
     }
 
     double getLatitude() {
@@ -37,7 +47,7 @@ public class Coordinate {
         return longitude;
     }
 
-    String getPort() {
-        return port;
+    String getName() {
+        return name;
     }
 }
