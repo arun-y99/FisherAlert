@@ -14,6 +14,13 @@ import android.widget.TextView;
 
 public class location extends AppCompatActivity {
 
+    /**
+     * This class is for the layout "location.xml"
+     *
+     * This is a placeholder activity to display the location of the phone, to implement the distance
+     * calculation. Later contributions may introduce new features
+     */
+
     private TextView latTextView;
     private TextView lonTextView;
     private TextView dTextView;
@@ -36,6 +43,10 @@ public class location extends AppCompatActivity {
         dTextView = findViewById(R.id.textView);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        /**
+         * This is a Location Listener. It is a listener for detecting any changes in the location of the phone.
+         */
+
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -43,6 +54,11 @@ public class location extends AppCompatActivity {
                 lonTextView.setText("Lon: "+ location.getLongitude());
                 phone.setLatitude(location.getLatitude());
                 phone.setLongitude(location.getLongitude());
+                /**
+                * This is an extremely inefficient calculation. It is a direct implementation of the formula to
+                * calculate the distance between two geographic coordinates. I feel there is some library which
+                * can do this in a fraction of a second.
+                * */
                 double a = Math.pow(Math.sin((phone.getLatitude()-port.getLatitude())/2),2) + Math.cos(phone.getLatitude())*Math.cos(port.getLatitude())*Math.pow(Math.sin((phone.getLongitude()-port.getLongitude())/2),2);
                 double c = Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
                 double d = c*6371000;
@@ -67,7 +83,10 @@ public class location extends AppCompatActivity {
         };
 
 
-
+        /**
+         * This is a LocationManager object which will request the location of the phone by GPS
+         *
+         */
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -77,17 +96,6 @@ public class location extends AppCompatActivity {
 
 
     }
-
-    /*private void configureButton() {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
-            }
-        });
-
-    }*/
-
 
 }
 

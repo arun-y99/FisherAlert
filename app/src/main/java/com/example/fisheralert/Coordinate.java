@@ -1,8 +1,8 @@
 package com.example.fisheralert;
 
 public class Coordinate {
-    /*
-    * This class is to represent the location of any object be it the phone or any port.
+    /**
+    * This class is to represent the location of any object, be it the phone or any port.
     *
     * Data members:
     *   1.  latitude : the latitude, expressed as a double value
